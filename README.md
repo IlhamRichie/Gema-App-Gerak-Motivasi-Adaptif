@@ -1,6 +1,6 @@
 # GEMA - Gerak Motivasi Adaptif
 
- **"Setiap Gerakan Bergema Menjadi Harapan."**
+**"Setiap Gerakan Bergema Menjadi Harapan."**
 
 GEMA adalah sebuah prototipe aplikasi fisioterapi digital berbasis Android yang dirancang untuk mengubah proses rehabilitasi pasca-stroke yang monoton menjadi sebuah pengalaman yang interaktif, memotivasi, dan memberdayakan.
 
@@ -25,6 +25,7 @@ Rehabilitasi pasca-stroke di rumah adalah kunci pemulihan, namun sering kali gag
 Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kecepatan pengembangan dan skalabilitas.
 
   * **Framework Aplikasi:** [Flutter](https://flutter.dev/) - Untuk membangun aplikasi Android yang indah dan berperforma tinggi dari satu basis kode.
+  * **State Management:** [GetX](https://pub.dev/packages/get) - Untuk manajemen state, dependensi, dan navigasi yang efisien.
   * **Backend & Database:** [Firebase](https://firebase.google.com/)
       * **Firestore:** Sebagai database NoSQL untuk menyimpan data progres pengguna.
       * **Firebase Authentication:** Untuk menangani proses otentikasi pengguna melalui Google Sign-In.
@@ -74,18 +75,24 @@ Pastikan Anda sudah menginstal perangkat lunak berikut:
 
 ## 📂 Struktur Proyek (Project Structure)
 
+Proyek ini menggunakan pola arsitektur yang dihasilkan oleh `get_cli` untuk mengorganisir kode secara modular dan rapi.
+
 ```
 lib/
-├── main.dart             # Titik masuk utama aplikasi
-├── core/                 # Logika inti, model, konstanta
-│   ├── models/           # Model data (User, TrainingSession)
-│   └── services/         # Layanan (FirebaseService, MLService)
-├── features/             # Fitur-fitur utama aplikasi
-│   ├── auth/             # Widget & logika untuk otentikasi
-│   ├── home/             # Halaman utama/dashboard
-│   ├── training/         # Logika & UI untuk sesi latihan
-│   └── progress/         # Halaman untuk menampilkan progres
-└── shared/               # Widget yang digunakan berulang kali (Tombol, Kartu, dll.)
+├── app/
+│   ├── data/               # Model, provider, dan repository (opsional)
+│   ├── modules/            # Direktori utama untuk semua fitur/modul
+│   │   └── home/           # Contoh sebuah modul (misal: home)
+│   │       ├── bindings/     # Menghubungkan dependencies ke view
+│   │       │   └── home_binding.dart
+│   │       ├── controllers/  # Logika bisnis dan state management
+│   │       │   └── home_controller.dart
+│   │       └── views/        # Tampilan UI (halaman/widget)
+│   │           └── home_view.dart
+│   └── routes/             # Definisi dan pengelolaan rute navigasi
+│       ├── app_pages.dart    # Daftar semua halaman/rute
+│       └── app_routes.dart   # Nama-nama konstanta untuk rute
+└── main.dart               # Titik masuk utama aplikasi
 ```
 
 ## 📄 Lisensi
